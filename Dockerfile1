@@ -17,4 +17,5 @@ RUN wget https://github.com/OlafenwaMoses/ImageAI/releases/download/essentials-v
 ENV APP_FILE FirstDetection.py
 EXPOSE 5000
 
-CMD ["/bin/bash", "-c", "$PWD/loopfile.sh"]
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
