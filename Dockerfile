@@ -11,10 +11,21 @@ RUN pip3 install --upgrade pip \
     && pip install opencv-python
 
 WORKDIR /app
+RUN useradd -ms /bin/bash  randomuser && \
+    chown -R randomuser:randomuser  /app && \
+    chmod -R 777 /app && \
+    ls -al /app
+USER randomuser
+
+WORKDIR /app
 COPY . /app
+RUN ls -al /app
 RUN wget https://github.com/OlafenwaMoses/ImageAI/releases/download/essentials-v5/resnet50_coco_best_v2.1.0.h5/ -O resnet50_coco_best_v2.1.0.h5
 # RUN pip3 --no-cache-dir install -r requirements.txt
 ENV APP_FILE FirstDetection.py
 EXPOSE 5000
 
+# RUN chmod 755 /app/loopfile.sh
+RUN  chmod -R 777 /app && \
+     ls -al /app
 CMD ["/bin/bash", "-c", "$PWD/loopfile.sh"]

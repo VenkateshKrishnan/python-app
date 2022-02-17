@@ -7,12 +7,14 @@ cat oldfiles
 while :
 do
 
-read -p "Press [Enter] key to continue..." readEnterKey
+echo "inside while"
+
+#read -p "Press [Enter] key to continue..." readEnterKey
 
 BASEDIR="$PWD"
 # ls -A $BASEDIR > $BASEDIR/newfiles
 
-ls -A $BASEDIR | grep jpg  > newfiles
+ls -A $BASEDIR | grep jpg  > $BASEDIR/newfiles
 cat newfiles
 
 DIRDIFF=$(diff $BASEDIR/oldfiles $BASEDIR/newfiles | cut -f 2 -d "")
@@ -35,6 +37,7 @@ done
 
 ls -A $BASEDIR | grep jpg  > oldfiles
 # ls -A $BASEDIR > oldfiles
+sleep 15
 done
 
 echo
